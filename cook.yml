@@ -1,2 +1,8 @@
 cook:
-  special:Hello Cook!!
+  special: Default!
+  
+---
+spring:
+  profile: dev
+cook:
+  special: "안녕하세요"
