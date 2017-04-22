@@ -2,6 +2,7 @@ cook:
   special: Default!
   
 ---
+
 spring:
   profile: dev
 cook:
