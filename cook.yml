@@ -1,1 +1,2 @@
-cook.special=0000!!
+cook:
+  special:Hello Cook!!
