@@ -1,0 +1,21 @@
+eureka:
+  client:
+    region: default
+    service-url:
+      defaultZone: ${vcap.services.DiscoveryService-i5.credentials.uri}/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: ${CF_INSTANCE_IP}
+    non-secure-port: ${CF_INSTANCE_PORT}
+    instance-id: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    lease-renewal-interval-in-seconds: 15
+    appname: testtesttest1234444
+
+security:
+  basic:
+    enabled: false
+
+management:
+  port: ${PORT}
+  security:
+    enabled: false
