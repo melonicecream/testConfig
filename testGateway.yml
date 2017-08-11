@@ -1,3 +1,51 @@
-eureka:
-  instance:
+#spring:
+#  application:
+#    name: testGateway
+#    
+##zuul:
+##  ignored-services: '*'
+##  routes:
+##    HYSTRIXTESTCLIENT: /test/**
+#
+  
+security:
+  basic:
+    enabled: false
+
+management:
+  port: ${PORT}
+  security:
+    enabled: false
+    
+eureka:  
+  instance:    
+    prefer-ip-address: true    
+    ip-address: ${CF_INSTANCE_IP}    
+    non-secure-port: ${CF_INSTANCE_PORT}
+    instance-id: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}    
+    lease-renewal-interval-in-seconds: 15
     appname: BB
+
+---
+spring:
+  profiles: blue
+eureka:  
+  client:    
+    region: default    
+#    fetch-registry: true    
+#    registry-fetch-interval-seconds: 30    
+#    register-with-eureka: true    
+    service-url:      
+     defaultZone: ${vcap.services.DiscoveryService-i5.credentials.uri}/eureka/
+     
+---
+spring:
+  profiles: green
+eureka:  
+  client:    
+    region: default    
+#    fetch-registry: true    
+#    registry-fetch-interval-seconds: 30    
+#    register-with-eureka: true    
+    service-url:      
+     defaultZone: ${vcap.services.DiscoveryService-Green.credentials.uri}/eureka/
